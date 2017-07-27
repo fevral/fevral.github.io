@@ -408,7 +408,7 @@ It is initialized to 0:
 00000001000012F8 mov     [rbp+innerCounter], 0
 ```
 
-It exits when it has reached the value 4:
+It exits when it has reached the value 5:
 
 ```
 __text:0000000100001302 loc_100001302:
