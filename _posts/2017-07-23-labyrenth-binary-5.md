@@ -19,6 +19,7 @@ Author(s): @xedi25
 
 http://dl.labyrenth.com/multistage/15b7a0a936a9a53324b40c16e936ac6b4f4374ecdde3a2267f0434e4ca18ef7c.7z
 ```
+[Alternate binary download link](https://github.com/fevral/theJunkyard/tree/master/labyrenth2017/binary)
 
 ## Step 0: Hints
 
@@ -1453,7 +1454,7 @@ debug122:00374D44 db 0ECh ; 8
 debug122:00374D45 db  4Ch ; L
 ```
 
-It is our successfully decrypted shellcode. We could dump this shellcode and analyze it a few different ways...(e.g., [wrap it in its own executable](httphttps://github.com/MarioVilas/shellcode_tools/blob/master/shellcode2exe.py), emulate it using [miasm](http://www.miasm.re/blog/2016/02/12/dynamic_shellcode_analysis.html)), but perhaps that'll be another blog post. 
+It is our successfully decrypted shellcode. We could dump this shellcode and analyze it a few different ways...(e.g., [wrap it in its own executable](https://github.com/MarioVilas/shellcode_tools/blob/master/shellcode2exe.py), emulate it using [miasm](http://www.miasm.re/blog/2016/02/12/dynamic_shellcode_analysis.html)), but perhaps that'll be another blog post. 
 
 We click on the first byte of our shellcode, and define it as code `c`, then let IDA know it is a function with `p`. Before jumping into a CFG, we scroll down to see if there are other functions we missed as the 
 
