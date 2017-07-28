@@ -19,6 +19,7 @@ Author(s): Erye Hernandez, Amro Younes, Zhi Xu
 
 http://dl.labyrenth.com/osxransomware/fb450f0eb3cb0b1466692152d99163fb3cd1efca68529244fb679b74da96b9e8.7z
 ```
+[Alternate binary download link](https://github.com/fevral/theJunkyard/tree/master/labyrenth2017/binary)
 
 ## Step 0: Hints
 
