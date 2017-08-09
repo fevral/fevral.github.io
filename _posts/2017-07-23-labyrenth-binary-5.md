@@ -601,6 +601,16 @@ See this [blog post and comments](https://hooked-on-mnemonics.blogspot.ca/2013/0
 
 We'll go ahead and use the break on RtlUserThreadStart method as mentioned in the first response/comment.
 
+There's likely a better way, but we can go to Search -> Text (or Alt+T) and look for RtlUserThreadStart:
+
+![find-userthreadstart](/images/labyrenth2017/binary/5-3-find-userthreadstart.png)
+
+We set a breakpoint, then go back to the other IDA instance to let the CreateRemoteThread call through (after setting a breakpoint on the next instruction after the CreateRemoteThread).
+
+![userthreadstart](/images/labyrenth2017/binary/5-3-userthreadstart.png)
+
+It works wonderfully, and we can go set a breakpoint on main before letting this function continue
+
 We will need another instance of IDA (or another debugger) in order to debug this other process and set this breakpoint. We'll attach for now, and find/label our buffers and the functions that were written to the base of this process.
 
 We go ahead and attach to the hollowed notepad.exe.
@@ -642,16 +652,6 @@ We go ahead and take a quick look at these other two functions, and rename them 
 
 
 smallRecursy and stackBytesCallsRecursy? Good enough for now.
-
-There's likely a better way, but we can go to Search -> Text (or Alt+T) and look for RtlUserThreadStart:
-
-![find-userthreadstart](/images/labyrenth2017/binary/5-3-find-userthreadstart.png)
-
-We set a breakpoint, then go back to the other IDA instance to let the CreateRemoteThread call through (after setting a breakpoint on the next instruction after the CreateRemoteThread).
-
-![userthreadstart](/images/labyrenth2017/binary/5-3-userthreadstart.png)
-
-It works wonderfully, and we can go set a breakpoint on main before letting this function continue
 
 We step over the maybeImportResolver and see that it is indeed resolving imports. We rename the variable as the imports are stored in them.
 
