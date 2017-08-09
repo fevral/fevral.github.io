@@ -1324,7 +1324,7 @@ We take a look inside the justLevel5 function and a quick user xrefs chart tells
 
 ![xrefs-chart](/images/labyrenth2017/binary/5-5-xrefs-chart.png)
 
-A little bit of reading on MSDN would clear things up if it's not clear enough. We step through...and we get an exception on InternetOpenUrlA. Not entirely sure why, but that's ok, we have the bytes we need.
+A little bit of reading on MSDN would clear things up if it's not clear enough. We step through...and we get an exception on InternetOpenUrlA. Not entirely sure why, but that's ok, we have the bytes we need. (Note that [x64dbg](https://x64dbg.com/) does not have this issue)
 
 We prepare for a bit of binary surgery.
 
@@ -1947,3 +1947,4 @@ However, we did forget to deal with the after effects of the binary surgery in L
 26. [Shellcode2exe](https://github.com/MarioVilas/shellcode_tools/blob/master/shellcode2exe.py)
 27. [miasm](http://www.miasm.re/blog/2016/02/12/dynamic_shellcode_analysis.html)
 28. [IDA Stealth](https://github.com/nihilus/idastealth)
+29. [x64dbg](https://x64dbg.com/)
