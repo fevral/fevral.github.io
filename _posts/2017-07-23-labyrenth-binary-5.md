@@ -601,6 +601,10 @@ See this [blog post and comments](https://hooked-on-mnemonics.blogspot.ca/2013/0
 
 We'll go ahead and use the break on RtlUserThreadStart method as mentioned in the first response/comment.
 
+We will need another instance of IDA (or another debugger) in order to debug this other process and set this breakpoint. We'll attach for now, and find/label our buffers and the functions that were written to the base of this process.
+
+We go ahead and attach to the hollowed notepad.exe.
+
 There's likely a better way, but we can go to Search -> Text (or Alt+T) and look for RtlUserThreadStart:
 
 ![find-userthreadstart](/images/labyrenth2017/binary/5-3-find-userthreadstart.png)
@@ -611,11 +615,7 @@ We set a breakpoint, then go back to the other IDA instance to let the CreateRem
 
 It works wonderfully, and we can go set a breakpoint on main before letting this function continue
 
-We will need another instance of IDA (or another debugger) in order to debug this other process and set this breakpoint. We'll attach for now, and find/label our buffers and the functions that were written to the base of this process.
-
-We go ahead and attach to the hollowed notepad.exe.
-
-Once we've attached, we go to 0x140000
+We go to 0x140000
 
 ```
 debug012:00140000 assume es:debug022, ss:debug022, ds:debug022, fs:nothing, gs:nothing
