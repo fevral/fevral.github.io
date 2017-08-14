@@ -19,6 +19,7 @@ Author(s): @xedi25
 
 http://dl.labyrenth.com/multistage/15b7a0a936a9a53324b40c16e936ac6b4f4374ecdde3a2267f0434e4ca18ef7c.7z
 ```
+[Alternate binary download link](https://github.com/fevral/theJunkyard/tree/master/labyrenth2017/binary)
 
 ## Step 0: Hints
 
@@ -604,7 +605,17 @@ We will need another instance of IDA (or another debugger) in order to debug thi
 
 We go ahead and attach to the hollowed notepad.exe.
 
-Once we've attached, we go to 0x140000
+There's likely a better way, but we can go to Search -> Text (or Alt+T) and look for RtlUserThreadStart:
+
+![find-userthreadstart](/images/labyrenth2017/binary/5-3-find-userthreadstart.png)
+
+We set a breakpoint, then go back to the other IDA instance to let the CreateRemoteThread call through (after setting a breakpoint on the next instruction after the CreateRemoteThread).
+
+![userthreadstart](/images/labyrenth2017/binary/5-3-userthreadstart.png)
+
+It works wonderfully, and we can go set a breakpoint on main before letting this function continue
+
+We go to 0x140000
 
 ```
 debug012:00140000 assume es:debug022, ss:debug022, ds:debug022, fs:nothing, gs:nothing
@@ -641,16 +652,6 @@ We go ahead and take a quick look at these other two functions, and rename them 
 
 
 smallRecursy and stackBytesCallsRecursy? Good enough for now.
-
-There's likely a better way, but we can go to Search -> Text (or Alt+T) and look for RtlUserThreadStart:
-
-![find-userthreadstart](/images/labyrenth2017/binary/5-3-find-userthreadstart.png)
-
-We set a breakpoint, then go back to the other IDA instance to let the CreateRemoteThread call through (after setting a breakpoint on the next instruction after the CreateRemoteThread).
-
-![userthreadstart](/images/labyrenth2017/binary/5-3-userthreadstart.png)
-
-It works wonderfully, and we can go set a breakpoint on main before letting this function continue
 
 We step over the maybeImportResolver and see that it is indeed resolving imports. We rename the variable as the imports are stored in them.
 
@@ -1323,7 +1324,7 @@ We take a look inside the justLevel5 function and a quick user xrefs chart tells
 
 ![xrefs-chart](/images/labyrenth2017/binary/5-5-xrefs-chart.png)
 
-A little bit of reading on MSDN would clear things up if it's not clear enough. We step through...and we get an exception on InternetOpenUrlA. Not entirely sure why, but that's ok, we have the bytes we need.
+A little bit of reading on MSDN would clear things up if it's not clear enough. We step through...and we get an exception on InternetOpenUrlA. Not entirely sure why, but that's ok, we have the bytes we need. (Note that [x64dbg](https://x64dbg.com/) does not have this issue)
 
 We prepare for a bit of binary surgery.
 
@@ -1453,7 +1454,7 @@ debug122:00374D44 db 0ECh ; 8
 debug122:00374D45 db  4Ch ; L
 ```
 
-It is our successfully decrypted shellcode. We could dump this shellcode and analyze it a few different ways...(e.g., [wrap it in its own executable](httphttps://github.com/MarioVilas/shellcode_tools/blob/master/shellcode2exe.py), emulate it using [miasm](http://www.miasm.re/blog/2016/02/12/dynamic_shellcode_analysis.html)), but perhaps that'll be another blog post. 
+It is our successfully decrypted shellcode. We could dump this shellcode and analyze it a few different ways...(e.g., [wrap it in its own executable](https://github.com/MarioVilas/shellcode_tools/blob/master/shellcode2exe.py), emulate it using [miasm](http://www.miasm.re/blog/2016/02/12/dynamic_shellcode_analysis.html)), but perhaps that'll be another blog post. 
 
 We click on the first byte of our shellcode, and define it as code `c`, then let IDA know it is a function with `p`. Before jumping into a CFG, we scroll down to see if there are other functions we missed as the 
 
@@ -1946,3 +1947,4 @@ However, we did forget to deal with the after effects of the binary surgery in L
 26. [Shellcode2exe](https://github.com/MarioVilas/shellcode_tools/blob/master/shellcode2exe.py)
 27. [miasm](http://www.miasm.re/blog/2016/02/12/dynamic_shellcode_analysis.html)
 28. [IDA Stealth](https://github.com/nihilus/idastealth)
+29. [x64dbg](https://x64dbg.com/)

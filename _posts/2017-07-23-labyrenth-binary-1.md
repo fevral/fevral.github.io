@@ -17,6 +17,7 @@ Author(s): @fdivrp
 
 http://dl.labyrenth.com/myfirstmalware/5f008547232b8141316fc03d5a4108763ee108ab7c54199a673a69ab99551f67.7z
 ```
+[Alternate binary download link](https://github.com/fevral/theJunkyard/tree/master/labyrenth2017/binary)
 
 ## Step 1: Initial triage & recon
 

@@ -19,6 +19,7 @@ Author(s): @theenergystory, @apatrid
 
 http://dl.labyrenth.com/totp/d5214f8a516fb9b6d25cf7ba0a8c8df01720710c39cc3a8f53f2acf44100c7a5.7z
 ```
+[Alternate binary download link](https://github.com/fevral/theJunkyard/tree/master/labyrenth2017/binary)
 
 ## Step 0: Hints
 Well, ok...what's at labytime.com?

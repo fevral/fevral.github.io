@@ -18,6 +18,7 @@ Author(s): @xedi25
 
 http://dl.labyrenth.com/labyrinth/d88b07e6d10481cb716e0c8a78519d2c8bfef2778e0332aef6c4f0699d74be6e.7z
 ```
+[Alternate binary download link](https://github.com/fevral/theJunkyard/tree/master/labyrenth2017/binary)
 
 This isn't going to be a particularly nice write-up, but it is pretty close to how I solved this challenge. This isn't the in-depth malware analysis edition, we gotta go fast after all. However, you might walk away with a few more IDA, Python, CTF, or debugging tricks. So let's do it.
 
