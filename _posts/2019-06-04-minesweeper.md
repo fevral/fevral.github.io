@@ -1,7 +1,7 @@
 ---
 layout: default
 title:  "Minesweeper: 3 Lives and a Mine detector (Part 1, Reversing the Needful in an enLighthoused way)"
-date:   June 04, 2019
+date:   June 23, 2019
 ---
 
 # Intro
