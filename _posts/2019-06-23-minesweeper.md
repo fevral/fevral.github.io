@@ -18,6 +18,8 @@ Additionally, we'll take a less conventional approach to this reversing task (se
 
 ## Step 0: Familiarize ourselves with the game and think about how the code may have been written.
 
+It's worth playing through a game on beginner to observe the win state, and purposely losing a game to observe the losing state.
+
 ![gameRecon0](/images/minesweeper/gameRecon0.png)
 
 ![gameRecon1](/images/minesweeper/gameRecon1.png)
@@ -58,8 +60,6 @@ Observations and notes:
     - based on revealed tile data
         - flag definite mine locations (if any)
         - clear tiles that cannot contain mines (if any)
-
-It's worth playing through a game on beginner to observe the win state, and purposely losing a game to observe the losing state.
 
 Ok, with a bit of an idea of what we'd expect from the code, we can start with some basic static analysis...
 
@@ -113,11 +113,9 @@ Here's how we can make use of it:
 
 ![prefixCoverage0](/images/minesweeper/prefixCoverage0.png)
 
-...but that's quite a bit more code than we want to look at, so...we load the coverage for the game that didn't hit a mine, and substract it from the mineHit coverage:
+...but that's quite a bit more code than we want to look at, so...we load the coverage for the game that didn't hit a mine, and [subtract it](/images/minesweeper/composeCoverage0.png) from the mineHit coverage.
 
-[composeCoverage0](/images/minesweeper/composeCoverage0.png)
-
-this looks more manageable, and hopefully your mind is racing with possibilities. This is quite an excellent tool.
+This looks more manageable, and hopefully your mind is racing with possibilities. This is quite an excellent tool.
 
 Let's prefix these functions, "containsHitLogic"
 
