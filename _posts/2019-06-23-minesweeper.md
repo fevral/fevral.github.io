@@ -302,8 +302,10 @@ test    eax, eax
 
 Let's examine this member of the game board state, gameGlobal+0x10:
 
+```
 .data:003A68B4 dword_3A68B4 dd 1BE2588h
     0x1BE2588+0x10--> debug060:01BE2598 dd offset unk_1C21548
+```
 
 This is the object that was referenced at various offsets when the result of our tile reveal was being determined in the mineFlagSetter basic block that let to mineTriggerFlag Let's examine it:
 
