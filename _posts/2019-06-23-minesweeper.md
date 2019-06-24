@@ -303,7 +303,7 @@ test    eax, eax
 Let's examine this member of the game board state, gameGlobal+0x10:
 
 ```
-.data:003A68B4 dword_3A68B4 dd 1BE2588h
+.data:003A68B4 gameGlobal dd 1BE2588h
     0x1BE2588+0x10--> debug060:01BE2598 dd offset unk_1C21548
 ```
 
@@ -491,13 +491,17 @@ tileCases arguments
 
 We hit tileCases before mineFlagSetter:
 
+```
 ecx  - tileObject (0x1CD7E48, inspecting offset 0x18 and 0x1C confirms the column at index 7 and row at index 3)
 arg0 - 0x9
 arg4 - 0x1
 arg8 - 0x0
 argC - 0x1
+```
 
-arg0 will take us to case 8 in the switch, which has the accompanying accessibility text "|55018|ACC|Row %1!d!, Column %2!d! Tile (Concealed)"
+arg0 will take us to case 8 in the switch, which has the accompanying accessibility text:
+
+`|55018|ACC|Row %1!d!, Column %2!d! Tile (Concealed)`
 
 ...not exactly what we're looking for, so we let execution continue. The code now breaks on our mineTriggerFlag block. This time, we'll let the game ending branch execute so that a mine will be rendered. We hit tileCases again, but ecx is not the tileObject we're expecting. This is where it helps to have played the game a little before reversing.
 
@@ -508,11 +512,13 @@ Recall that when the game ends on a triggered mine, many tile sprites are update
 
 When we break on tileCases again, the arguments are:
 
+```
 ecx  - tileObject (0x1CD7E48)
 arg0 - 0x9
 arg4 - 0x1
 arg8 - 0x1
 argC - 0x1
+```
 
 It seems possible that arg8 determines whether a mine sprite is rendered on a tile or not. Let's test this by restarting the game, flagging a tile, and when we hit tileCases (unconditional breakpoint), settings the args (9, 1, 1, 1).
 
