@@ -4,7 +4,9 @@ title:  "Minesweeper: 3 Lives and a Mine detector (Part 1, Reversing the Needful
 date:   June 23, 2019
 ---
 
-# Intro
+# Minesweeper: 3 Lives and a Mine detector (Part 1, Reversing the Needful in an enLighthoused way)
+
+## Intro
 In this post, we'll begin working on a project to implement a lives feature in Minesweeper, as well as produce an answer key for a given game board. The objective is:
 
 - grant the user an additional two attempts to clear the board
